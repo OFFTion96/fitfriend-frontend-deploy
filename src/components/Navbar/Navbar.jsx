@@ -1,6 +1,7 @@
 import React from "react";
 import './Navbar.css';
 import {useState} from 'react'
+import { Link } from "react-router-dom";
 function Navbar() {
     const [tabMobile,setTabMobile] = useState(false)
     const [showNavbar,setShowNavbar] = useState(true)
@@ -25,16 +26,18 @@ function Navbar() {
             </div>
             <div className="ul">
                 <ul className="Nav-ul">
-                    <li>Community</li>
-                    <li>Add Post</li>
-                    <li>My Activities</li>
+                    <li><Link style={{textDecoration: 'none',color:"white"}} to = {"/"}>Community</Link></li>
+                    <li><Link style={{textDecoration: 'none',color:"white"}} to = {"/addpost"}>Add Post</Link></li>
+                    <li><Link style={{textDecoration: 'none',color:"white"}} to = {"/myactivities"}>My Activities</Link></li>
                     
                 </ul>
             </div>
          
             <div className="login-name">
-                    <button><a id='#' className="sign-in"><i className="fa-solid fa-right-to-bracket"></i>Sign in</a></button>
-                    <button><a id='#' className="sign-up"><i className="fa-solid fa-user-plus"></i>Sign up</a></button>
+                    <button><a id='#' className="sign-in"><i className="fa-solid fa-right-to-bracket"></i>
+                    <Link style={{textDecoration: 'none',color:"black"}} to = {"/login"}>Sign in</Link></a></button>
+                    <button><a id='#' className="sign-up"><i className="fa-solid fa-user-plus"></i>
+                    <Link style={{textDecoration: 'none',color:"black"}} to = {"/register"}>Sign up</Link></a></button>
             </div>
             <div className="nav-mobile">
                 <div className="toggle-bar">
@@ -43,14 +46,16 @@ function Navbar() {
                 <div className={tabMobile ? "tab-mobile active":"tab-mobile"}>
                     <div className="container-mobile">
                         <div className="mobile-login-name">
-                            <button onClick={toggleMobile}><i className="fa-solid fa-right-to-bracket"></i><a id='#' className="sign-in">Sign in</a></button>
-                            <button onClick={toggleMobile}><i className="fa-solid fa-user-plus"></i><a id='#' className="sign-up">Sign up</a></button>
+                            <button onClick={toggleMobile}><i className="fa-solid fa-right-to-bracket"></i><a id='#' className="sign-in">
+                                <Link style={{textDecoration: 'none',color:"black"}} to = {"/login"}>Sign in</Link></a></button>
+                            <button onClick={toggleMobile}><i className="fa-solid fa-user-plus"></i><a id='#' className="sign-up">
+                            <Link style={{textDecoration: 'none',color:"black"}} to = {"/register"}>Sign up</Link></a></button>
                         </div>
                         <div className = "mobile-ul">
                             <ul className="mobile-nav-ul">
-                                <li onClick={toggleMobile}>Community</li>
-                                <li onClick={toggleMobile}>Add Post</li>
-                                <li onClick={toggleMobile}>My Activities</li>
+                                <li onClick={toggleMobile}><Link style={{textDecoration: 'none',color:"white"}} to = {"/"}>Community</Link></li>
+                                <li onClick={toggleMobile}><Link style={{textDecoration: 'none',color:"white"}} to = {"/addpost"}>Add Post</Link></li>
+                                <li onClick={toggleMobile}><Link style={{textDecoration: 'none',color:"white"}} to = {"/myactivites"}>My Activities</Link></li>
                                 
                             </ul>
                         </div>

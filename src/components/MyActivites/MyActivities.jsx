@@ -7,9 +7,9 @@ import axios from "axios";
 import dateFormat from "dateformat";
 import Swal from 'sweetalert2'
 
-const MyActivites = () => {
+const MyActivites = (props) => {
     const [filterWeek,setFilterWeek] = useState(1)
-    const username_id = "62f7cc755f03dde81aa2e305"
+    const username_id = props.userId
     
     let date_start = new Date()
     let date_end = new Date()
@@ -56,6 +56,7 @@ const MyActivites = () => {
     }
     
     const updateItem =(id) =>{
+        console.log(id)
         setClick(!click)
     }
 
