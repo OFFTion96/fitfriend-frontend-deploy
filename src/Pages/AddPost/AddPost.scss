@@ -6,9 +6,9 @@ $font-family_1: Arial, Helvetica, sans-serif;
 
 .PostForm {
     position: fixed;
-    top: 55%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    top: 15%;
+    left: 25%;
+    // transform: translate(-50%, -50%);
     margin: 10px auto;
     font-family: $font-family_1;
     width: 50%;
@@ -25,13 +25,13 @@ $font-family_1: Arial, Helvetica, sans-serif;
     }
 
     .content {
-        padding-bottom: 1rem;
+        padding-bottom: 10px;
         margin-left: 12rem;
         font-size:16px;
         
         label {
-            padding-bottom: 0.3rem;
-            color: white;
+            padding-bottom: 0.2rem;
+            color: rgb(33, 56, 255);
             display: block;
             width: 100px;
            
@@ -91,7 +91,7 @@ $font-family_1: Arial, Helvetica, sans-serif;
 
         ////////styling - input-time/////////
         .inputTime {
-            width: 25%;
+            width: 60%;
             color: #C9C4FD;
         }
 
@@ -168,6 +168,7 @@ $font-family_1: Arial, Helvetica, sans-serif;
         .cancelButton {
             background-color: $background-color_2;
             border: 1px solid white;
+         
         }
         
         .cancelButton:hover {
@@ -319,8 +320,3 @@ $font-family_1: Arial, Helvetica, sans-serif;
             
     }
 }
-
-
-
-
-

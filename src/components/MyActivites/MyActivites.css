@@ -25,38 +25,5 @@
     text-align: center;
     letter-spacing: 1px;
 }
-/*
 
-.h1__weeks > button{
-    width: 4rem;
-    background-color: orange;
-    outline: none;
-    border: none;
-    border-radius: 2rem;
-}
-
-
-/* ==================== MEDIA QUERY ================== */
-/* 
-
-@media screen and (max-width :986px) {
-
-.h1__weeks {
-    display: flex;
-    justify-content: space-around;
-    gap: 16rem;
-}
-
-.h1__weeks > h1{
- color: red;
-}
-.h1__weeks > button{
-    width: 4rem;
-    background-color: orange;
-    outline: none;
-    border: none;
-    border-radius: 2rem;
-}
-}
-     */
 

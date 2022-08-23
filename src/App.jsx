@@ -4,6 +4,7 @@ import Login from './Pages/Login/Login';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import Navbar from './components/Navbar/Navbar';
 import Register from './Pages/Register/Register';
+import MainPage from './Pages/MainPage/MainPage';
 import { AddPost } from './Pages/AddPost/AddPost';
 import { useState } from 'react';
 import axios from 'axios';
@@ -14,6 +15,7 @@ function App() {
 
 const [loginState,setLoginState] =useState(false)
 const [userId,setUserId] = useState("")  
+const [userName,setUserName] = useState("")
 const [userLogin, setUserLogin] = useState({
   username: '',
   password: ''
@@ -37,6 +39,8 @@ const loginValidation= async() =>{
     await axios.post('http://localhost:8080/users/login', postData, {headers:headers}).then((res)=>{
       setLoginState(true)
       setUserId(res.data.username_id)
+      setUserName(res.data.username)
+      
     
     }).then(()=>{
       Swal.fire({
@@ -59,7 +63,7 @@ const loginValidation= async() =>{
 
     })
 };
-
+console.log("username issssss",userName)
 const handleSubmit = (event) => {
   event.preventDefault();
 
@@ -75,10 +79,10 @@ const handleSubmit = (event) => {
         </div>
           <Routes>
             {/* <Route path = '/nav' element={<Navbar/>}/> */}
-           \
+           
             <Route path = '/login' element = {<Login onSubmit={handleSubmit} user_login = {userLogin.username} user_password = {userLogin.password} onChange={handleChange} />}/>
             <Route path = '/register' element = {<Register/>}/>
-           \
+           
             <Route path='*' element = {<Navigate to="/login"/>}/>
           </Routes>
 
@@ -96,12 +100,12 @@ const handleSubmit = (event) => {
             <Navbar/>
           </div>
             <Routes>
-              {/* <Route path = '/nav' element={<Navbar/>}/> */}
+              <Route path = '/' element={<MainPage/>}/>
               <Route path = '/myactivities' element={<ProfilePage userId={userId}/> } />
               {/* <Route path = '/login' element = {<Login onSubmit={handleSubmit} user_login = {userLogin.username} user_password = {userLogin.password} onChange={handleChange} />}/> */}
               {/* <Route path = '/register' element = {<Register/>}/> */}
-              <Route path = '/addpost' element = {<AddPost/>}/>
-              <Route path='*' element = {<Navigate to="/myactivities"/>}/>
+              <Route path = '/addpost' element = {<AddPost userId={userId} userName={userName}/>}/>
+              <Route path='*' element = {<Navigate to="/"/>}/>
             </Routes>
 
           </BrowserRouter>

@@ -23,7 +23,7 @@ const MyActivites = (props) => {
     const [dataActivities,setDataActivites] = useState([])
     const [click,setClick] = useState(true)
     useEffect(()=>{
-            axios.get(`${url}/activites/${username_id}?date_start=${date_start}&date_end=${date_end}`).then((res)=>{
+            axios.get(`${url}/activities/${username_id}?date_start=${date_start}&date_end=${date_end}`).then((res)=>{
             setDataActivites(res.data)
             
         }
@@ -44,7 +44,7 @@ const MyActivites = (props) => {
           }).then((result) => {
             console.log(result)
             if (result.isConfirmed) {
-                axios.delete(`${url}/activites/${id}`).then(setClick(!click))
+                axios.delete(`${url}/activities/${id}`).then(setClick(!click))
               Swal.fire(
                 'Deleted!',
                 'Your file has been deleted.',
@@ -74,7 +74,7 @@ const MyActivites = (props) => {
                 <DropDown selectWeek ={ selectWeek } weekNo = {filterWeek}/>
             </div>
             {dataActivities.map((data,index)=>{
-                return <CardMyActivites key = {index} textComment = {data.captions} location = {data.location} date = {data.date_post.split("T")[0]} time = {data.date_post.split("T")[1].split(".")[0]}  
+                return <CardMyActivites key = {index} textComment = {data.captions} location = {data.location} date = {data.date_post.split("T")[0]}  
                 imageComment = {data.sport_photo} removeItem={removeItem} id={data._id} updateItem = {updateItem}/>
             })}
 

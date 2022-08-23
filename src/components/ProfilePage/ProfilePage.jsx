@@ -18,7 +18,7 @@ const ProfilePage= (props) =>{
         console.log(profileData)
     }
     
-        , [])
+        , [profileData])
     console.log(profileData)
     return(
         <div>
@@ -28,7 +28,7 @@ const ProfilePage= (props) =>{
             <div className="box-profile-page">
                 <div className="user-profile">
                     <div className="profile-picture">
-                        <img src="./assert/avatar.png" 
+                        <img src={profileData.user_photo} 
                         alt="profile-picture"/>
                     </div>
                     <div className="profile-detail">

@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from 'react';
+import dateFormat, { masks } from "dateformat";
 import './AddPost.scss';
 import { Link } from 'react-router-dom';
-
-
-export const AddPost = () => {
+import axios from "axios";
+import Swal from 'sweetalert2'
+import { useNavigate } from "react-router-dom";
+export const AddPost = (props) => {
+    let navigate = useNavigate();
     const options = [
         {id:'a', value: '', text: 'Name of Sport', disabled: true},
         {id:'b', value: 'running', text: 'Running'},
@@ -27,43 +30,95 @@ export const AddPost = () => {
         caption: '',
       });
     
-    const [images, setImages] = useState([]);
-    const [imageURLs, setImagesURLs] = useState([]);
+      
+    const [images, setImages] = useState({});
+
+    // const [imageURLs, setImagesURLs] = useState([]);
 
     
     // ถ้าไม่ใส่รูปภาพจะfailed แต่ถ้าใส่รูปภาพมาจะทำ forEach loop เป็นnewImageUrls
     // แล้ว push ข้อมูลตัวใหม่ใน arr ส่งข้อมูลขึ้นใหม่เป็น imageURLs
-    useEffect(() => {
-        if (images.length < 1)return;
-        const newImageUrls = [];
-        images.forEach(image => newImageUrls.push(URL.createObjectURL(image)));
-        setImagesURLs(newImageUrls);
-        setForm({
-            ...form,
-            imageUrls: newImageUrls,
-            })
-    },[images]);
+    const convertToBase64 = (file) => {
+        return new Promise((resolve, reject) => {
+          const fileReader = new FileReader();
+          fileReader.readAsDataURL(file);
+          fileReader.onload = () => {
+            resolve(fileReader.result);
+          };
+          fileReader.onerror = (error) => {
+            reject(error);
+          };
+        });
+      };
+      const handleFileUpload = async (e) => {
+        const file = e.target.files[0];
+        const base64 = await convertToBase64(file);
+        setImages({ ...images, sport_photo: base64 });
+      };
 
    const onChange = (e) => {
         setForm({...form, [e.target.name]: e.target.value});
     }
     
-
-   const onSubmits = (e) => {
-        e.preventDefault();
-        console.log(form);
-        console.log(images);
-   }
-
-    // ส่งข้อมูลขึ้นใหม่
-    function onImageChange(e) {
-        setImages([...e.target.files]);
+    const connectToBackend = async () => {
+        const date = dateFormat(form.date, "isoDateTime");
+        const timeStart = dateFormat(form.timeStart, "isoDateTime");
+        const timeEnd = dateFormat(form.timeEnd, "isoDateTime");
+        if(form.selected === 'other' ) {
+          form.selected = form.addSport
+        }
+        const headers = {
+          'Content-Type':'application/json'
+        }
+      
+        const postData = {
+            "username":props.userName,
+            "username_id": props.userId,
+            "sport": form.selected,
+            "date_post": date,
+            "date_activites_start": timeStart,
+            "date_activites_end": timeEnd,
+            "location": form.location,
+            "captions": form.caption,
+            "sport_photo": images.sport_photo
+        }
+        console.log("postData")
+        console.log(postData)
+        await axios.post('http://localhost:8080/activities', postData, {headers:headers}).then(()=>{
+            Swal.fire({
+                position: 'center',
+                icon: 'success',
+                title: 'Add post success',
+                showConfirmButton: false,
+                timer: 1500
+              })
+              .then(()=>{
+                navigate('/')
+              })
+        }).catch(()=>{
+            Swal.fire({
+                icon: 'error',
+                title: 'Something wrong',
+                text: 'Please try again',
+                footer: '<a href="">Why do I have this issue?</a>'
+              })
+        })
     }
+        // // ส่งข้อมูลขึ้นใหม่
+        // function onImageChange(e) {
+        //     setImages([...e.target.files]);
+        // }
 
-    
+        const onSubmits = async (e) => {
+          e.preventDefault();
+          console.log(form);
+          // console.log(images);
+          await connectToBackend ();
+        };
+  
     return (
         <div className="PostForm">
-        <h1>POST</h1>
+        <h1>Post</h1>
         <form onSubmit={onSubmits}>
 
         <div className="content">
@@ -121,15 +176,17 @@ export const AddPost = () => {
         </div>
         
         <div className="content">
-        <label>Time</label> 
+        <label>Time-start</label> 
             <input className="inputTime" 
-            type="time" 
+            type="datetime-local" 
             name="timeStart"
             value={form.timeStart} 
             onChange={onChange} />  
-            <span>-</span>
+        </div>  
+        <div className="content">
+        <label>Time-End</label> 
             <input className="inputTime" 
-            type="time" 
+            type="datetime-local" 
             name="timeEnd" 
             value={form.timeEnd}
             onChange={onChange} />
@@ -140,18 +197,18 @@ export const AddPost = () => {
         <label>Photo</label>
             <input type="file"
             className="inputPhoto" 
-            name="images" 
-            multiple accept="image/*" 
-            onChange={onImageChange}
+            name="sport_photo" 
+            multiple accept="sport_photo/*" 
+            onChange={(e) => handleFileUpload(e)}
             id="upload" hidden/>
-            <label for="upload" className="chooseFile">Choose file +</label>
-            {imageURLs.map((imageSrc, index) => (<img width="400" height="360" src={imageSrc} key={index} />))}
+            <label htmlFor="upload" className="chooseFile">Choose file +</label>
+            {/* {images.map((imageSrc, index) => (<img width="400" height="360" src={imageSrc} key={index} />))} */}
            {/* เวลาใส่ภาพจะพรีวิวรูปภาพด้วยตรงนี้  */}
         </div>
         
         <div className='buttonPost'>
             <button className="saveButton" type="submit">SAVE</button> 
-            <button className="cancelButton" type="submit" ><Link to='/MainPage'>CANCEL</Link></button>
+            <button  className="cancelButton" type="submit" ><Link style={{textDecoration: 'none',color:"white"}} to='/MainPage'>CANCEL</Link></button>
             {/* <Link to='/MainPage'><button className="cancelButton" type="submit" >CANCEL</button></Link> */}
         </div>  
         </form>
