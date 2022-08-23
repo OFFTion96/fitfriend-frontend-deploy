@@ -12,11 +12,11 @@ import { BrowserRouter as Router, Link } from 'react-router-dom';
 import Notification from '../Notification/Notification';
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-
+import config from '../../../../config';
 
 
 const SideBar = (props) => {
-  const url = "http://localhost:8080"
+  const url = config.url
   const [runningNotiCount, setrunningNotiCount] = useState(0)
   const [JoggingNotiCount, setJoggingNotiCount] = useState(0)
   const [SwimmingNotiCount, setSwimmingNotiCount] = useState(0)

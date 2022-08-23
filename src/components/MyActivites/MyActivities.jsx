@@ -6,8 +6,9 @@ import "./MyActivites.css";
 import axios from "axios";
 import dateFormat from "dateformat";
 import Swal from 'sweetalert2'
-
+import config from "../../../config";
 const MyActivites = (props) => {
+    const url=config.url
     const [filterWeek,setFilterWeek] = useState(1)
     const username_id = props.userId
     
@@ -19,7 +20,7 @@ const MyActivites = (props) => {
 
     
 
-    const url="http://localhost:8080"
+
     const [dataActivities,setDataActivites] = useState([])
     const [click,setClick] = useState(true)
     useEffect(()=>{

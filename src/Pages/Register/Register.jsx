@@ -10,8 +10,9 @@ import userphotoImage from '../../images/photo.png'
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import Swal from 'sweetalert2'
-
+import config from '../../../config';
 function Register() {
+  const url=config.url
   let navigate = useNavigate();
   const [userRegister, setUserRegister] = useState({
     username: '',
@@ -135,7 +136,7 @@ function Register() {
       "user_photo": postImage.user_photo
     }  
     console.log (postData);
-    await axios.post('http://localhost:8080/users/register', postData, {headers:headers}).then((res)=>{
+    await axios.post(`${url}/users/register`, postData, {headers:headers}).then((res)=>{
 
       if(res.statusText==="OK"){
         Swal.fire({

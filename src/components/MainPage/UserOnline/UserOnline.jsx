@@ -9,7 +9,7 @@ import Fab from '@mui/material/Fab';
 import AddIcon from '@mui/icons-material/Add';
 import axios from 'axios';
 import { useColorScheme } from '@mui/material';
-
+import config from '../../../../config';
 // const users = [
 //   {
 //     name: 'ploy'
@@ -38,9 +38,9 @@ import { useColorScheme } from '@mui/material';
 function Useronline() {
   const [users,setUsers] = useState([])
   
-
+  const url = config.url
   useEffect(()=>{
-    axios.get('http://localhost:8080/users/').then((results)=>{
+    axios.get(`${url}/users/`).then((results)=>{
 
       // console.log(results);
       // const username = results.data.username
