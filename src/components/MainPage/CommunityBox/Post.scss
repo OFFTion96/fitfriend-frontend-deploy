@@ -42,13 +42,19 @@
         margin-bottom: 1.25rem;
     }
 }
-
+.postImage {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 /* post Image */
 .postImage img {
-    width: 100%;
+    width: 60%;
     height: 20%;
     border-radius: 0.3125rem;
     margin-bottom: 0;
+ 
+
 }
 
 /* post Options */
