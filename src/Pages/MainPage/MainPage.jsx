@@ -24,14 +24,14 @@ function MainPage() {
   const [click,setClick] = useState(false)
   const [numActivity,setNumActivity] = useState(0)
   useEffect(() => {
-    console.log("runnn")
+ 
     if (click== false) {
       axios.get(`${url}/activities`).then((res) => {
         setactivitesGroup(res.data)
    
       })
     } else {
-      console.log("run dete")
+   
       const date = dateFormat(value,"yyyy-mm-dd")
       axios.get(`${url}/activities?date=${date}`).then((res) => {
         setactivitesGroup(res.data)
@@ -40,7 +40,7 @@ function MainPage() {
      
     }
   }, [value])
-  console.log(value)
+
   useEffect(()=>{
     if (numActivity===1){
       var sport = "running"
@@ -67,12 +67,12 @@ function MainPage() {
     setNumActivity(result)
     
   }
-  console.log(value)
+
   const handleChange = async (newValue) => {
   setValue(newValue);
     setClick(true)
   }
-  console.log("myyyyyy",activitesGroup)
+
   return (
     <div className="MainPage">
       <div className='main-session'>

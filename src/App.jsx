@@ -39,7 +39,7 @@ const loginValidation= async() =>{
     }  
    
     await axios.post(`${url}/users/login`, postData, {headers:headers}).then((res)=>{
-      console.log(res.data)
+    
       setLoginState(true)
       setUserId(res.data.username_id)
       setUserName(res.data.username)
@@ -68,7 +68,13 @@ const loginValidation= async() =>{
 
     })
 };
-console.log("username issssss",userPhoto)
+const setLogout = ()=>{
+    setLoginState(false)
+    setUserId("")
+    setUserName("")
+    setUserPhoto("")
+}
+
 const handleSubmit = (event) => {
   event.preventDefault();
 
@@ -80,7 +86,7 @@ const handleSubmit = (event) => {
       <div className="App">
         <BrowserRouter>
         <div className='nav'>
-          <Navbar/>
+          <Navbar loginState = {loginState} handleClick = {setLogout}/>
         </div>
           <Routes>
             {/* <Route path = '/nav' element={<Navbar/>}/> */}
@@ -102,7 +108,7 @@ const handleSubmit = (event) => {
         <div className="App">
           <BrowserRouter>
           <div className='nav'>
-            <Navbar/>
+            <Navbar loginState = {loginState}  handleClick = {setLogout}/>
           </div>
             <Routes>
               <Route path = '/' element={<MainPage/>}/>

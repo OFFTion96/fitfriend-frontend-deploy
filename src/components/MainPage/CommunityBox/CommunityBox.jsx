@@ -3,7 +3,7 @@ import './CommunityBox.scss'
 import { Post } from './Post'
 
 const CommunityBox = ({ activitesGroup }) => {
-  console.log("Hiiiiiiii",activitesGroup)
+
   return (
     <div className='box'>
 

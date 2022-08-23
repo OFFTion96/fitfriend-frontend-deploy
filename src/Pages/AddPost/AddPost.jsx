@@ -85,8 +85,8 @@ export const AddPost = (props) => {
             "sport_photo": images.sport_photo,
             "user_photo":props.userPhoto
         }
-        console.log("postData")
-        console.log(postData)
+     
+    
         await axios.post(`${url}/activities`, postData, {headers:headers}).then(()=>{
             Swal.fire({
                 position: 'center',
@@ -114,8 +114,8 @@ export const AddPost = (props) => {
 
         const onSubmits = async (e) => {
           e.preventDefault();
-          console.log(form);
-          // console.log(images);
+         
+       
           await connectToBackend ();
         };
   

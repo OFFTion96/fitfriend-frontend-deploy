@@ -15,11 +15,11 @@ const ProfilePage= (props) =>{
         axios.get(`${url}/users/${userIdLogin}/information`)
         
         .then((res) => { setProfileData(res.data)})
-        console.log(profileData)
+      
     }
     
         , [profileData])
-    console.log(profileData)
+
     return(
         <div>
            <div className="navbar">
