@@ -1,7 +1,7 @@
 import React from "react";
 import './Navbar.css';
 import { useState, useEffect } from 'react';
-
+import { Link } from "react-router-dom";
 
 function Navbar(props) {
     const [tabMobile, setTabMobile] = useState(false)
@@ -36,9 +36,9 @@ function Navbar(props) {
             </div>
             <div className="ul">
                 <ul className="Nav-ul">
-                    <li>Community</li>
-                    <li>Add Post</li>
-                    <li>My Activities</li>
+                    <li><Link style={{textDecoration: 'none',color:"white"}} to = {"/"}>Community</Link></li>
+                    <li><Link style={{textDecoration: 'none',color:"white"}} to = {"/addpost"}>Add Post</Link></li>
+                    <li><Link style={{textDecoration: 'none',color:"white"}} to = {"/myactivities"}>My Activities</Link></li>
 
                 </ul>
             </div>
@@ -90,9 +90,9 @@ function Navbar(props) {
                         </div>
                         <div className="mobile-ul">
                             <ul className="mobile-nav-ul">
-                                <li onClick={toggleMobile}>Community</li>
-                                <li onClick={toggleMobile}>Add Post</li>
-                                <li onClick={toggleMobile}>My Activities</li>
+                                <li onClick={toggleMobile}><Link style={{textDecoration: 'none',color:"white"}} to = {"/"}>Community</Link></li>
+                                <li onClick={toggleMobile}><Link style={{textDecoration: 'none',color:"white"}} to = {"/addpost"}>Add Post</Link></li>
+                                <li onClick={toggleMobile}><Link style={{textDecoration: 'none',color:"white"}} to = {"/myactivites"}>My Activities</Link></li>
 
                             </ul>
                         </div>
