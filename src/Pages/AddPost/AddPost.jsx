@@ -6,20 +6,20 @@ import axios from "axios";
 import Swal from 'sweetalert2'
 import { useNavigate } from "react-router-dom";
 import config from '../../../config';
+
+
 export const AddPost = (props) => {
     const url=config.url
     let navigate = useNavigate();
     const options = [
-        {id:'a', value: '', text: 'Name of Sport', disabled: true},
-        {id:'b', value: 'running', text: 'Running'},
-        {id:'c', value: 'jogging', text: 'Jogging'},
-        {id:'d', value: 'yoga', text: 'Yoga'},
-        {id:'e', value: 'aerobic', text: 'Aerobic'},
-        {id:'f', value: 'strength Training', text: 'Strength Training'},
-        {id:'g', value: 'swimming', text: 'swimming'},
-        {id:'h', value: 'dance', text: 'Dance'},
-        {id:'i', value: 'boxing', text: 'Boxing'},
-        {id:'j', value: 'other', text: 'Other'},
+      {id:'a', value: '', text: 'Name of Sport', disabled: true},
+      {id:'b', value: 'running', text: 'Running'},
+      {id:'c', value: 'jogging', text: 'Jogging'},
+      {id:'d', value: 'yoga', text: 'Yoga'},
+      {id:'e', value: 'aerobic', text: 'Aerobic'},
+      {id:'f', value: 'strength Training', text: 'Strength Training'},
+      {id:'g', value: 'swimming', text: 'Swimming'},
+      {id:'j', value: 'other', text: 'Other'},
       ];
 
     
@@ -203,8 +203,9 @@ export const AddPost = (props) => {
             name="sport_photo" 
             multiple accept="sport_photo/*" 
             onChange={(e) => handleFileUpload(e)}
-            id="upload" hidden/>
-            <label htmlFor="upload" className="chooseFile">Choose file +</label>
+            // id="upload" hidden
+            />
+            {/* <label htmlFor="upload" className="chooseFile">Choose file +</label> */}
             {/* {images.map((imageSrc, index) => (<img width="400" height="360" src={imageSrc} key={index} />))} */}
            {/* เวลาใส่ภาพจะพรีวิวรูปภาพด้วยตรงนี้  */}
         </div>
