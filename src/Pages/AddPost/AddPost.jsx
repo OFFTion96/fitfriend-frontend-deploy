@@ -80,7 +80,8 @@ export const AddPost = (props) => {
             "date_activites_end": timeEnd,
             "location": form.location,
             "captions": form.caption,
-            "sport_photo": images.sport_photo
+            "sport_photo": images.sport_photo,
+            "user_photo":props.userPhoto
         }
         console.log("postData")
         console.log(postData)

@@ -72,7 +72,7 @@ function MainPage() {
   setValue(newValue);
     setClick(true)
   }
-  console.log(setactivitesGroup)
+  console.log("myyyyyy",activitesGroup)
   return (
     <div className="MainPage">
       <div className='main-session'>

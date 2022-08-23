@@ -16,6 +16,7 @@ function App() {
 const [loginState,setLoginState] =useState(false)
 const [userId,setUserId] = useState("")  
 const [userName,setUserName] = useState("")
+const [userPhoto,setUserPhoto] = useState("")
 const [userLogin, setUserLogin] = useState({
   username: '',
   password: ''
@@ -37,9 +38,12 @@ const loginValidation= async() =>{
     }  
    
     await axios.post('http://localhost:8080/users/login', postData, {headers:headers}).then((res)=>{
+      console.log(res.data)
       setLoginState(true)
       setUserId(res.data.username_id)
       setUserName(res.data.username)
+      setUserPhoto(res.data.user_photo)
+      
       
     
     }).then(()=>{
@@ -63,7 +67,7 @@ const loginValidation= async() =>{
 
     })
 };
-console.log("username issssss",userName)
+console.log("username issssss",userPhoto)
 const handleSubmit = (event) => {
   event.preventDefault();
 
@@ -104,7 +108,7 @@ const handleSubmit = (event) => {
               <Route path = '/myactivities' element={<ProfilePage userId={userId}/> } />
               {/* <Route path = '/login' element = {<Login onSubmit={handleSubmit} user_login = {userLogin.username} user_password = {userLogin.password} onChange={handleChange} />}/> */}
               {/* <Route path = '/register' element = {<Register/>}/> */}
-              <Route path = '/addpost' element = {<AddPost userId={userId} userName={userName}/>}/>
+              <Route path = '/addpost' element = {<AddPost userId={userId} userName={userName} userPhoto={userPhoto}/>}/>
               <Route path='*' element = {<Navigate to="/"/>}/>
             </Routes>
 
