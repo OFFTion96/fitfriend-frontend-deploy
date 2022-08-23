@@ -15,10 +15,10 @@ import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DesktopDatePicker } from '@mui/x-date-pickers/DesktopDatePicker';
 import { ConnectedTvOutlined } from '@mui/icons-material';
-
+import config from '../../../config';
 
 function MainPage() {
-  const url = "http://localhost:8080"
+  const url = config.url
   const [activitesGroup, setactivitesGroup] = useState([])
   const [value, setValue] = React.useState(new Date());
   const [click,setClick] = useState(false)

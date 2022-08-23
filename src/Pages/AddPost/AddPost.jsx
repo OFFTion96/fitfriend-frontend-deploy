@@ -5,7 +5,9 @@ import { Link } from 'react-router-dom';
 import axios from "axios";
 import Swal from 'sweetalert2'
 import { useNavigate } from "react-router-dom";
+import config from '../../../config';
 export const AddPost = (props) => {
+    const url=config.url
     let navigate = useNavigate();
     const options = [
         {id:'a', value: '', text: 'Name of Sport', disabled: true},
@@ -85,7 +87,7 @@ export const AddPost = (props) => {
         }
         console.log("postData")
         console.log(postData)
-        await axios.post('http://localhost:8080/activities', postData, {headers:headers}).then(()=>{
+        await axios.post(`${url}/activities`, postData, {headers:headers}).then(()=>{
             Swal.fire({
                 position: 'center',
                 icon: 'success',

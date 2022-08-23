@@ -8,11 +8,12 @@ import MainPage from './Pages/MainPage/MainPage';
 import { AddPost } from './Pages/AddPost/AddPost';
 import { useState } from 'react';
 import axios from 'axios';
-
+import config from '../config';
 import Swal from 'sweetalert2'
 
-function App() {
 
+function App() {
+const url=config.url
 const [loginState,setLoginState] =useState(false)
 const [userId,setUserId] = useState("")  
 const [userName,setUserName] = useState("")
@@ -37,7 +38,7 @@ const loginValidation= async() =>{
       "password": userLogin.password,
     }  
    
-    await axios.post('http://localhost:8080/users/login', postData, {headers:headers}).then((res)=>{
+    await axios.post(`${url}/users/login`, postData, {headers:headers}).then((res)=>{
       console.log(res.data)
       setLoginState(true)
       setUserId(res.data.username_id)

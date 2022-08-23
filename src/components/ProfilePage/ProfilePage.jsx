@@ -5,14 +5,14 @@ import MyActivites from "../MyActivites/MyActivities";
 import NavbarMockup from "../NavbarMockup/NavbarMockup";
 import Navbar from "../Navbar/Navbar";
 import axios from "axios";
-
+import config from "../../../config";
 const ProfilePage= (props) =>{
-
+    const url=config.url
     const [profileData,setProfileData] = useState([])
     const userIdLogin = props.userId
     useEffect(() => {
-        const url = `http://localhost:8080/users/${userIdLogin}/information`
-        axios.get(`${url}`)
+
+        axios.get(`${url}/users/${userIdLogin}/information`)
         
         .then((res) => { setProfileData(res.data)})
         console.log(profileData)
