@@ -74,7 +74,7 @@ const setLogout = ()=>{
     setUserName("")
     setUserPhoto("")
 }
-console.log("s",loginState)
+
 const handleSubmit = (event) => {
   event.preventDefault();
 

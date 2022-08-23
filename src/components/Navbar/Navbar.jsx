@@ -9,7 +9,7 @@ function Navbar(props) {
 
     
     const showLogin = !(props.loginState)
-    console.log("show",showLogin)
+ 
     const handleClick = () => {
         setshowLogin(!showLogin)
     }
