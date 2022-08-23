@@ -68,7 +68,13 @@ const loginValidation= async() =>{
 
     })
 };
-
+const setLogout = ()=>{
+    setLoginState(false)
+    setUserId("")
+    setUserName("")
+    setUserPhoto("")
+}
+console.log("s",loginState)
 const handleSubmit = (event) => {
   event.preventDefault();
 
@@ -80,7 +86,7 @@ const handleSubmit = (event) => {
       <div className="App">
         <BrowserRouter>
         <div className='nav'>
-          <Navbar/>
+          <Navbar loginState = {loginState} handleClick = {setLogout}/>
         </div>
           <Routes>
             {/* <Route path = '/nav' element={<Navbar/>}/> */}
@@ -102,7 +108,7 @@ const handleSubmit = (event) => {
         <div className="App">
           <BrowserRouter>
           <div className='nav'>
-            <Navbar/>
+            <Navbar loginState = {loginState}  handleClick = {setLogout}/>
           </div>
             <Routes>
               <Route path = '/' element={<MainPage/>}/>
