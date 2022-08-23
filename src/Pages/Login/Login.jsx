@@ -28,13 +28,13 @@ function Login(props) {
   //     alert('Login Successfully')
   //   } else {
   //     alert('invalid password or username')
-  //     console.log('invalid password or username');
+
   //   }
   // };
 
   // const handleSubmit = (event) => {
   //   event.preventDefault();
-  //   console.log(userLogin)
+
   //   // preventDefault ไม่ให้ browser reload
   //   loginValidation();
   // };

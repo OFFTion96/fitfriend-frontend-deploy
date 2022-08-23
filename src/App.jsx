@@ -39,7 +39,7 @@ const loginValidation= async() =>{
     }  
    
     await axios.post(`${url}/users/login`, postData, {headers:headers}).then((res)=>{
-      console.log(res.data)
+    
       setLoginState(true)
       setUserId(res.data.username_id)
       setUserName(res.data.username)
@@ -68,7 +68,7 @@ const loginValidation= async() =>{
 
     })
 };
-console.log("username issssss",userPhoto)
+
 const handleSubmit = (event) => {
   event.preventDefault();
 

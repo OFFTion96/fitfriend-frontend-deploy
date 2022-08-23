@@ -28,13 +28,13 @@ export const Post = ({ profilePic, activitesPhoto, username, timestamp, message,
 
 
                 <div className="postOptions">
-                    <div className="reply">
+                    {/* <div className="reply">
                     <p><img src={comment} alt='comment' />reply</p>
                         
                     </div>
                     <div className="privateChat">
                         <p><img src={send} alt='send' />chat</p>
-                    </div>
+                    </div> */}
                     <div className="location">
                         <p><img src={locationicon} alt='locationicon' />{location}</p>
                     </div>

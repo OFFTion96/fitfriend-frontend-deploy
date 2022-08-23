@@ -95,7 +95,7 @@ function Register() {
     //     try {
     //       await createImage(post);
     //     } catch (error) {
-    //       console.log(error.message);
+   
     //     }
     //   };
     
@@ -135,7 +135,7 @@ function Register() {
       "bmi": userRegister.BMI,
       "user_photo": postImage.user_photo
     }  
-    console.log (postData);
+  
     await axios.post(`${url}/users/register`, postData, {headers:headers}).then((res)=>{
 
       if(res.statusText==="OK"){
