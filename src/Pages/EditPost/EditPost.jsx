@@ -4,34 +4,42 @@ import "./EditPost.scss";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import config from "../../../config";
-export const EditPost = () => {
-  const [activityData, setActivityData] = useState([]);
-  const activityId = "63034cb344b74d1fde325dc5";
-  useEffect(() => {
-    console.log("hello");
-    const url = config.url
 
-    axios.get(`${url}/activities/${activityId}`).then((res) => {
+import Swal from 'sweetalert2'
+import { useNavigate } from "react-router-dom";
+
+export const EditPost = (props) => {
+  let navigate = useNavigate();
+  const url = config.url;
+
+  const [activityData, setActivityData] = useState([]);
+  const activityId = props.editPostId
+  const urll = config.url
+  useEffect(() => {
+
+    
+      axios.get(`${urll}/activities/get/${activityId}`).then((res) => {
+
       console.log(res.data);
       setActivityData(res.data);
     });
-    console.log(activityData);
+    
 
   }, []);
-
+  console.log(activityData);
   const options = [
-    {id:'a', value: '', text: 'Name of Sport', disabled: true},
-        {id:'b', value: 'running', text: 'Running'},
-        {id:'c', value: 'jogging', text: 'Jogging'},
-        {id:'d', value: 'yoga', text: 'Yoga'},
-        {id:'e', value: 'aerobic', text: 'Aerobic'},
-        {id:'f', value: 'strength Training', text: 'Strength Training'},
-        {id:'g', value: 'swimming', text: 'Swimming'},
-        {id:'j', value: 'other', text: 'Other'},
+    { id: "a", value: "", text: "Name of Sport", disabled: true },
+    {id:'b', value: 'running', text: 'Running'},
+    {id:'c', value: 'jogging', text: 'Jogging'},
+    {id:'d', value: 'yoga', text: 'Yoga'},
+    {id:'e', value: 'aerobic', text: 'Aerobic'},
+    {id:'f', value: 'strength Training', text: 'Strength Training'},
+    {id:'g', value: 'swimming', text: 'swimming'},
+    {id:'j', value: 'other', text: 'Other'},
   ];
 
   const [form, setForm] = useState({
-    selected: "",
+    sport: "",
     date: "",
     timeStart: "",
     timeEnd: "",
@@ -40,10 +48,10 @@ export const EditPost = () => {
   });
 
   const [images, setImages] = useState({
-    sport_photo: "",
+    sport_photo: ""
   });
-  
 
+  
   
   const convertToBase64 = (file) => {
     return new Promise((resolve, reject) => {
@@ -61,40 +69,58 @@ export const EditPost = () => {
     const file = e.target.files[0];
     const base64 = await convertToBase64(file);
     setImages({ ...images, sport_photo: base64 });
+   
   };
-
+  
   const onChange = (e) => {
     setActivityData({ ...activityData, [e.target.name]: e.target.value });
   };
 
+
   const connectToBackend = async () => {
+
+    
     const date = dateFormat(activityData.date, "isoDateTime");
     const timeStart = dateFormat(activityData.timeStart, "isoDateTime");
     const timeEnd = dateFormat(activityData.timeEnd, "isoDateTime");
-    if (activityData.selected === "other") {
-      activityData.selected = activityData.addSport;
+    if (activityData.sport === "other") {
+      activityData.sport = activityData.addSport;
     }
     const headers = {
       "Content-Type": "application/json",
     };
 
     const addActivity = {
-      username: "jib",
-      username_id: "999",
-      sport: activityData.selected,
-      date: date,
-      time_start: timeStart,
-      time_end: timeEnd,
+      username: activityData.username,
+      username_id: activityData.username_id,
+      sport: activityData.sport,
+      date_post: date,
+      date_activites_start: timeStart,
+      date_activites_end: timeEnd,
       location: activityData.location,
       captions: activityData.captions,
       sport_photo: images.sport_photo,
+      user_photo: activityData.user_photo,
     };
     console.log(addActivity);
     await axios
-      .put(`http://localhost:9000/activities/edit/${activityId}`, addActivity, { headers: headers })
+      .put(`${url}/activities/edit/${activityId}`, addActivity, { headers: headers })
       .then((res) => {
-        console.log(res);
-      });
+        Swal.fire({
+          position: 'center',
+          icon: 'success',
+          title: 'Edit success',
+          showConfirmButton: false,
+          timer: 1500
+        }).then(navigate('/myactivities'))
+      }).catch(()=>{
+        Swal.fire({
+          icon: 'error',
+          title: 'Something wrong',
+          text: 'Please try again',
+          footer: '<a href="">Why do I have this issue?</a>'
+        })
+      })
   };
 
   const onSubmits = async (e) => {
@@ -112,8 +138,8 @@ export const EditPost = () => {
           <label>Sport</label>
           <select
             required
-            value={activityData.selected}
-            name="selected"
+            value={activityData.sport}
+            name="sport"
             onChange={onChange}
           >
             {options.map((option) => (
@@ -127,7 +153,7 @@ export const EditPost = () => {
               </option>
             ))}
           </select>
-          {activityData.selected === "other" && (
+          {activityData.sport === "other" && (
             <input
               name="addSport"
               className="addSport"
@@ -194,7 +220,7 @@ export const EditPost = () => {
             className="inputTime"
             type="datetime-local"
             name="timeEnd"
-            value={activityData.timeEnd}
+            value={activityData.timeฎืก}
             onChange={onChange}
           />
         </div>

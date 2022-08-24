@@ -8,13 +8,16 @@ import dateFormat from "dateformat";
 import Swal from 'sweetalert2'
 import config from "../../../config";
 
-import {useNavigate} from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
+
 const MyActivites = (props) => {
     let navigate = useNavigate();
     const url=config.url
     const [filterWeek,setFilterWeek] = useState(1)
     const username_id = props.userId
     
+    const [dataActivities,setDataActivites] = useState([])
+    const [click,setClick] = useState(true)
     let date_start = new Date()
     let date_end = new Date()
     date_end.setDate(date_end.getDate()-(7*filterWeek))
@@ -24,15 +27,13 @@ const MyActivites = (props) => {
     
 
 
-    const [dataActivities,setDataActivites] = useState([])
-    const [click,setClick] = useState(true)
     useEffect(()=>{
             axios.get(`${url}/activities/${username_id}?date_start=${date_start}&date_end=${date_end}`).then((res)=>{
             setDataActivites(res.data)
-            
+        
         }
         )
-        console.log("delete")
+        console.log("yessssssssss")
     },[click,filterWeek])
  
     const removeItem = (id) =>{
@@ -60,7 +61,9 @@ const MyActivites = (props) => {
     }
     
     const updateItem =(id) =>{
-        console.log(id)
+
+        props.updateItem(id)
+        navigate('/editpost')
         setClick(!click)
     }
 
