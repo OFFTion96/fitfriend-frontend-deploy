@@ -33,11 +33,11 @@ const MyActivites = (props) => {
         
         }
         )
-        console.log("yessssssssss")
+   
     },[click,filterWeek])
  
     const removeItem = (id) =>{
-        console.log(id)
+    
         Swal.fire({
             title: 'Are you sure?',
             text: "You won't be able to revert this!",
@@ -47,7 +47,7 @@ const MyActivites = (props) => {
             cancelButtonColor: '#d33',
             confirmButtonText: 'Yes, delete it!'
           }).then((result) => {
-            console.log(result)
+          
             if (result.isConfirmed) {
                 axios.delete(`${url}/activities/${id}`).then(setClick(!click))
               Swal.fire(

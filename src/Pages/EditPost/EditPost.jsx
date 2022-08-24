@@ -20,13 +20,13 @@ export const EditPost = (props) => {
     
       axios.get(`${urll}/activities/get/${activityId}`).then((res) => {
 
-      console.log(res.data);
+
       setActivityData(res.data);
     });
     
 
   }, []);
-  console.log(activityData);
+ 
   const options = [
     { id: "a", value: "", text: "Name of Sport", disabled: true },
     {id:'b', value: 'running', text: 'Running'},
@@ -102,7 +102,7 @@ export const EditPost = (props) => {
       sport_photo: images.sport_photo,
       user_photo: activityData.user_photo,
     };
-    console.log(addActivity);
+  
     await axios
       .put(`${url}/activities/edit/${activityId}`, addActivity, { headers: headers })
       .then((res) => {
@@ -125,8 +125,8 @@ export const EditPost = (props) => {
 
   const onSubmits = async (e) => {
     e.preventDefault();
-    console.log(form);
-    // console.log(images);
+  
+    
     await connectToBackend();
   };
 
