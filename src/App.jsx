@@ -10,7 +10,7 @@ import { useState } from 'react';
 import axios from 'axios';
 import config from '../config';
 import Swal from 'sweetalert2'
-
+import { EditPost } from './Pages/EditPost/EditPost';
 
 function App() {
 const url=config.url
@@ -117,6 +117,7 @@ const handleSubmit = (event) => {
               {/* <Route path = '/register' element = {<Register/>}/> */}
               <Route path = '/addpost' element = {<AddPost userId={userId} userName={userName} userPhoto={userPhoto}/>}/>
               <Route path='*' element = {<Navigate to="/"/>}/>
+              <Route path='/editpost' element = {<EditPost/>}/>
             </Routes>
 
           </BrowserRouter>

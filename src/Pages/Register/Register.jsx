@@ -138,7 +138,6 @@ function Register() {
   
     await axios.post(`${url}/users/register`, postData, {headers:headers}).then((res)=>{
 
-      if(res.statusText==="OK"){
         Swal.fire({
           position: 'center',
           icon: 'success',
@@ -149,7 +148,7 @@ function Register() {
         .then(()=>{
           navigate('/login')
         })
-      }
+ 
       }
     ).catch(()=>{
       Swal.fire({

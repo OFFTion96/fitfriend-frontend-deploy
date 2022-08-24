@@ -3,15 +3,15 @@ import dateFormat, { masks } from "dateformat";
 import "./EditPost.scss";
 import { Link } from "react-router-dom";
 import axios from "axios";
-
+import config from "../../../config";
 export const EditPost = () => {
   const [activityData, setActivityData] = useState([]);
   const activityId = "63034cb344b74d1fde325dc5";
   useEffect(() => {
     console.log("hello");
-    const url = `http://localhost:9000/activities/${activityId}`;
-    console.log(url);
-    axios.get(`${url}`).then((res) => {
+    const url = config.url
+
+    axios.get(`${url}/activities/${activityId}`).then((res) => {
       console.log(res.data);
       setActivityData(res.data);
     });
