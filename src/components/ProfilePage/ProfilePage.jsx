@@ -18,7 +18,7 @@ const ProfilePage= (props) =>{
       
     }
     
-        , [profileData])
+        , [])
     const updateItem=(id)=>{
       
         props.updateItem(id)
