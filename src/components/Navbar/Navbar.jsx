@@ -93,7 +93,7 @@ function Navbar(props) {
                             <ul className="mobile-nav-ul">
                                 <li onClick={toggleMobile}><Link style={{textDecoration: 'none',color:"white"}} to = {"/"}>Community</Link></li>
                                 <li onClick={toggleMobile}><Link style={{textDecoration: 'none',color:"white"}} to = {"/addpost"}>Add Post</Link></li>
-                                <li onClick={toggleMobile}><Link style={{textDecoration: 'none',color:"white"}} to = {"/myactivites"}>My Activities</Link></li>
+                                <li onClick={toggleMobile}><Link style={{textDecoration: 'none',color:"white"}} to = {"/myactivities"}>My Activities</Link></li>
 
                             </ul>
                         </div>
