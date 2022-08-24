@@ -35,10 +35,11 @@ function MainPage() {
       const date = dateFormat(value,"yyyy-mm-dd")
       axios.get(`${url}/activities?date=${date}`).then((res) => {
         setactivitesGroup(res.data)
-    
+      
       })
      
     }
+   
   }, [value])
 
   useEffect(()=>{
