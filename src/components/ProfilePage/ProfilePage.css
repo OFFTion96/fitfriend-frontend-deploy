@@ -18,7 +18,7 @@
 .my-activity {
     position: relative;
     left: 20%;
-    background-color: wheat;
+    /* background-color: wheat; */
     width: 80%;
     min-height: 100vh;
    

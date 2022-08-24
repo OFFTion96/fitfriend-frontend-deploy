@@ -61,6 +61,7 @@ const MyActivites = (props) => {
     
     const updateItem =(id) =>{
         console.log(id)
+        navigate('/editpost')
         setClick(!click)
     }
 
