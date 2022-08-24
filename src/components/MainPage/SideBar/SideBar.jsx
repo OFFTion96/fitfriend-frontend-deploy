@@ -9,7 +9,7 @@ import Strengthtrainingicon from './imgicon/Strengthtrainingicon.png';
 
 import Plusicon from './imgicon/Plusicon.png';
 import { BrowserRouter as Router, Link } from 'react-router-dom';
-import Notification from '../Notification/Notification';
+import Notification from '../Notification/notification'
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import config from '../../../../config';
