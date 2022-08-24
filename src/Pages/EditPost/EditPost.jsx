@@ -72,7 +72,7 @@ export const EditPost = (props) => {
     setActivityData({ ...activityData, [e.target.name]: e.target.value });
   };
 
-  console.log("FOCUSSSSS",images.sport_photo)
+
   const connectToBackend = async () => {
 
     
