@@ -124,7 +124,9 @@ const updateItem = (id)=>{
               {/* <Route path = '/register' element = {<Register/>}/> */}
               <Route path = '/addpost' element = {<AddPost userId={userId} userName={userName} userPhoto={userPhoto}/>}/>
               <Route path='*' element = {<Navigate to="/"/>}/>
+
               <Route path='/editpost' element = {<EditPost editPostId = {editPostId} />}/>
+
             </Routes>
 
           </BrowserRouter>

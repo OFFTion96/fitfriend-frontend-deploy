@@ -4,18 +4,22 @@ import "./EditPost.scss";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import config from "../../../config";
+
 import Swal from 'sweetalert2'
 import { useNavigate } from "react-router-dom";
 
 export const EditPost = (props) => {
   let navigate = useNavigate();
   const url = config.url;
+
   const [activityData, setActivityData] = useState([]);
   const activityId = props.editPostId
   const urll = config.url
   useEffect(() => {
+
     
       axios.get(`${urll}/activities/get/${activityId}`).then((res) => {
+
       console.log(res.data);
       setActivityData(res.data);
     });
