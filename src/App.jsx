@@ -10,7 +10,7 @@ import { useState } from 'react';
 import axios from 'axios';
 import config from '../config';
 import Swal from 'sweetalert2'
-
+import { EditPost } from './Pages/EditPost/EditPost';
 
 function App() {
 const url=config.url
@@ -22,6 +22,7 @@ const [userLogin, setUserLogin] = useState({
   username: '',
   password: ''
 });
+const [editPostId,setEditPostId] = useState("")
 
 
 const handleChange = (event) => {
@@ -80,7 +81,13 @@ const handleSubmit = (event) => {
 
   // preventDefault ไม่ให้ browser reload
   loginValidation();
+
+}
+
+const updateItem = (id)=>{
+  setEditPostId(id)
 };
+
   if(loginState===false){
     return (
       <div className="App">
@@ -112,11 +119,12 @@ const handleSubmit = (event) => {
           </div>
             <Routes>
               <Route path = '/' element={<MainPage/>}/>
-              <Route path = '/myactivities' element={<ProfilePage userId={userId}/> } />
+              <Route path = '/myactivities' element={<ProfilePage userId={userId} updateItem={updateItem}/> } />
               {/* <Route path = '/login' element = {<Login onSubmit={handleSubmit} user_login = {userLogin.username} user_password = {userLogin.password} onChange={handleChange} />}/> */}
               {/* <Route path = '/register' element = {<Register/>}/> */}
               <Route path = '/addpost' element = {<AddPost userId={userId} userName={userName} userPhoto={userPhoto}/>}/>
               <Route path='*' element = {<Navigate to="/"/>}/>
+              <Route path='/editpost' element = {<EditPost editPostId = {editPostId} />}/>
             </Routes>
 
           </BrowserRouter>

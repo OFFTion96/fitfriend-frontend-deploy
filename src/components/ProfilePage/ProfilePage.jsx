@@ -19,7 +19,10 @@ const ProfilePage= (props) =>{
     }
     
         , [profileData])
-
+    const updateItem=(id)=>{
+      
+        props.updateItem(id)
+    }
     return(
         <div>
            <div className="navbar">
@@ -42,7 +45,7 @@ const ProfilePage= (props) =>{
                 </div>
                 <div className="my-activity">
                  
-                    <MyActivites userId={userIdLogin}/>
+                    <MyActivites userId={userIdLogin} updateItem = {updateItem}/>
                 </div>
 
             </div>
