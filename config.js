@@ -1,6 +1,6 @@
 
 const config = {
-  url:"http://localhost:8080"
+  url:"https://backend-test-vercel-offtion96.vercel.app"
         
     }
 
