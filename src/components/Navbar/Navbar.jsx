@@ -2,8 +2,9 @@ import React from "react";
 import './Navbar.css';
 import { useState, useEffect } from 'react';
 import { Link } from "react-router-dom";
-
+import {useNavigate} from 'react-router-dom';
 function Navbar(props) {
+    let navigate = useNavigate();
     const [tabMobile, setTabMobile] = useState(false)
     const [showNavbar, setShowNavbar] = useState(true)
 
@@ -43,8 +44,8 @@ function Navbar(props) {
                 </ul>
             </div>
             <div className="login-name">
-                {showLogin ? (<div><button><a id='#' className="sign-in"><i className="fa-solid fa-right-to-bracket"></i>Sign in</a></button>
-                    <button><a id='#' className="sign-up"><i className="fa-solid fa-user-plus"></i>Sign up</a></button></div>) :
+                {showLogin ? (<div><Link to = {"/login"}><button><a id='#' className="sign-in"><i className="fa-solid fa-right-to-bracket"></i>Sign in</a></button></Link>
+                    <Link to = {"/register"}><button><a id='#' className="sign-up"><i className="fa-solid fa-user-plus"></i>Sign up</a></button></Link></div>) :
                     <div className="Show__login__complete">
                     <div >
                   
@@ -64,15 +65,15 @@ function Navbar(props) {
                                 (
                                     <div>
                                         <div >
-                                            <button onClick={() => {
+                                            <Link to ={'/login'}><button onClick={() => {
                                                 toggleMobile();
                                                 setshowLogin(false)
                                             }}><i className="fa-solid fa-right-to-bracket"></i><a id='#' className="sign-in">Sign in</a>
-                                            </button>
+                                            </button></Link>
                                         </div>
                                         <div>
-                                            <button onClick={toggleMobile}><i className="fa-solid fa-user-plus"></i><a id='#' className="sign-up">Sign up</a>
-                                            </button>
+                                            <Link to = {'/register'}><button onClick={toggleMobile}><i className="fa-solid fa-user-plus"></i><a id='#' className="sign-up">Sign up</a>
+                                            </button></Link>
                                         </div>
                                     </div>
                                 ) :
