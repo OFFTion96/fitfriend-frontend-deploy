@@ -63,8 +63,9 @@ const MyActivites = (props) => {
     const updateItem =(id) =>{
 
         props.updateItem(id)
-     
+        
         setClick(!click)
+        navigate('/editpost')
     }
 
     const selectWeek = (week)=>{
